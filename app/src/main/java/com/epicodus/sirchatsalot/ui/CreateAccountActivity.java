@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.epicodus.sirchatsalot.Constants;
 import com.epicodus.sirchatsalot.R;
+import com.epicodus.sirchatsalot.models.User;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
@@ -63,7 +64,8 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
             mFirebaseRef.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
                 @Override
                 public void onSuccess(Map<String, Object> result){
-
+                    String uid = result.get("uid").toString();
+                    createUserInFirebaseHelper(name, email, uid);
                 }
 
                 @Override
@@ -74,5 +76,11 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
         } else {
             mPasswordEditText.setError("Your second password entry differed from the first");
         }
+    }
+
+    private void createUserInFirebaseHelper(final String name, final String email, final String uid){
+        final Firebase userLocation = new Firebase(Constants.FIREBASE_URL_USERS).child(uid);
+        User newUser = new User(name, email);
+        userLocation.setValue(newUser);
     }
 }
