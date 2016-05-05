@@ -7,8 +7,9 @@ import java.util.List;
  * Created by Guest on 5/4/16.
  */
 public class Conversation {
-    List<String> chatters;
+    List<String> chatters; // chatter uids
     List<Message> messages;
+    private String pushId;
 
     public Conversation() {
     }
@@ -30,4 +31,7 @@ public class Conversation {
         messages.add(newMessage);
     }
 
+    public String getPushId() { return pushId; }
+
+    public void setPushId(String pushId) { this.pushId = pushId; }
 }

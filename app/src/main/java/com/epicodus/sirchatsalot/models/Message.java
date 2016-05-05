@@ -9,6 +9,7 @@ public class Message {
     String body;
     String senderId;
     long datePosted;
+    private String pushId;
 
     public Message(){
 
@@ -35,4 +36,8 @@ public class Message {
     public CharSequence showRelativeDatePosted(){
         return DateUtils.getRelativeTimeSpanString(datePosted);
     }
+
+    public String getPushId() { return pushId; }
+
+    public void setPushId(String pushId) { this.pushId = pushId; }
 }

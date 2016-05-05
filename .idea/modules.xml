@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SirChatsalot.iml" filepath="$PROJECT_DIR$/SirChatsalot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Android_Sir-Chatsalot.iml" filepath="$PROJECT_DIR$/Android_Sir-Chatsalot.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
