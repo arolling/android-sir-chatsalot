@@ -149,7 +149,7 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
     private void createUserInFirebaseHelper(final String name, final String email, final String uid){
         final Firebase userLocation = new Firebase(Constants.FIREBASE_URL_USERS).child(uid);
-        User newUser = new User(name, email);
+        User newUser = new User(name, email, uid);
         userLocation.setValue(newUser);
     }
 

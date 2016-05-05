@@ -16,6 +16,7 @@ import com.epicodus.sirchatsalot.util.FirebaseRecyclerAdapter;
 import com.firebase.client.Query;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -25,6 +26,7 @@ import butterknife.ButterKnife;
  */
 public class FirebaseUserListAdapter extends FirebaseRecyclerAdapter<FirebaseUserListAdapter.UserViewHolder, User> {
     private MultiSelector mMultiSelector = new MultiSelector();
+    private ArrayList<User> mUsers;
 
     public FirebaseUserListAdapter(Query query, Class<User> itemClass) {
         super(query, itemClass);
@@ -65,7 +67,7 @@ public class FirebaseUserListAdapter extends FirebaseRecyclerAdapter<FirebaseUse
     public class UserViewHolder extends SwappingHolder implements View.OnClickListener {
         @Bind(R.id.userNameTextView) TextView mNameTextView;
         @Bind(R.id.userEmailTextView) TextView mUserEmailTextView;
-        private ArrayList<User> mUsers;
+
         private Context mContext;
 
 
@@ -90,5 +92,17 @@ public class FirebaseUserListAdapter extends FirebaseRecyclerAdapter<FirebaseUse
             mMultiSelector.tapSelection(this);
             Log.d("List adapter", "Tapped " + getLayoutPosition());
         }
+    }
+
+    public List<User> getSelectedUsers(){
+        List<User> tappedUsers = new ArrayList<>();
+
+        for(int i = 0; i < mUsers.size(); i++){
+            if(mMultiSelector.isSelected(i, 0)){
+                User user = mUsers.get(i);
+                tappedUsers.add(user);
+            }
+        }
+        return tappedUsers;
     }
 }

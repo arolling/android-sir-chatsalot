@@ -6,7 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
+import com.bignerdranch.android.multiselector.MultiSelector;
 import com.epicodus.sirchatsalot.Constants;
 import com.epicodus.sirchatsalot.R;
 import com.epicodus.sirchatsalot.adapters.FirebaseUserListAdapter;
@@ -14,17 +18,20 @@ import com.epicodus.sirchatsalot.models.User;
 import com.firebase.client.Firebase;
 import com.firebase.client.Query;
 
+import java.util.List;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class NewConversationActivity extends AppCompatActivity {
+public class NewConversationActivity extends AppCompatActivity{
     @Bind(R.id.chooseChattersRecyclerView) RecyclerView mChooseChatterRecyclerView;
+    @Bind(R.id.startConversationButton) Button mStartConversationButton;
 
     private Query mQuery;
     private Firebase mFirebaseUsersRef;
     private FirebaseUserListAdapter mAdapter;
     private SharedPreferences mSharedPreferences;
-
+    private List<User> mSelectedUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +43,13 @@ public class NewConversationActivity extends AppCompatActivity {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         setUpFireBaseQuery();
         setUpRecyclerView();
+        mStartConversationButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSelectedUsers = mAdapter.getSelectedUsers();
+                Log.v("first selected user: ", mSelectedUsers.get(0).getName());
+            }
+        });
     }
 
     private void setUpFireBaseQuery() {
@@ -47,4 +61,5 @@ public class NewConversationActivity extends AppCompatActivity {
         mChooseChatterRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mChooseChatterRecyclerView.setAdapter(mAdapter);
     }
+
 }

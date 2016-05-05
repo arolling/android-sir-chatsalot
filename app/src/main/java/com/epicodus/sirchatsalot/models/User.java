@@ -14,10 +14,11 @@ public class User {
 
     public User() {}
 
-    public User(String name, String email) {
+    public User(String name, String email, String uid) {
         this.name = name;
         this.email = email;
         this.myConversations = new ArrayList<>();
+        this.userId = uid;
     }
 
     public String getName() {
@@ -42,5 +43,4 @@ public class User {
 
     public String getUserId() { return userId; }
 
-    public void setUserId(String userId) { this.userId = userId; }
 }
