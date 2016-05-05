@@ -7,8 +7,8 @@ import java.util.List;
  * Created by Guest on 5/4/16.
  */
 public class Conversation {
-    List<String> chatters; // chatter uids
-    List<Message> messages;
+    List<String> chatters = new ArrayList<>(); // chatter uids
+    List<Message> messages = new ArrayList<>();
     private String pushId;
 
     public Conversation() {
@@ -16,7 +16,6 @@ public class Conversation {
 
     public Conversation(List<String> participants){
         this.chatters = participants;
-        this.messages = new ArrayList<>();
     }
 
     public List<String> getChatters() {

@@ -9,7 +9,7 @@ import java.util.List;
 public class User {
     private String name;
     private String email;
-    private List<String> myConversations; //ID strings
+    private List<String> myConversations = new ArrayList<>(); //ID strings
     private String userId;
 
     public User() {}
@@ -17,7 +17,6 @@ public class User {
     public User(String name, String email, String uid) {
         this.name = name;
         this.email = email;
-        this.myConversations = new ArrayList<>();
         this.userId = uid;
     }
 
