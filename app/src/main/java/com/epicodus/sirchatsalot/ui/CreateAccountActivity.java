@@ -97,12 +97,13 @@ public class CreateAccountActivity extends AppCompatActivity implements View.OnC
 
                     @Override
                     public void onAuthenticated(AuthData authData) {
-                        mAuthProgressDialog.hide();
+
                         if (authData != null) {
                             String userUid = authData.getUid();
 
                             String userInfo = authData.toString();
                             Log.d(TAG, "Currently logged in: " + userInfo);
+                            mAuthProgressDialog.hide();
 
                             mSharedPreferencesEditor.putString(Constants.KEY_UID, userUid).apply();
                             Intent intent = new Intent(CreateAccountActivity.this, MainActivity.class);
